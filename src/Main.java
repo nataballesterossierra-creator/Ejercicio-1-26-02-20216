@@ -39,16 +39,17 @@ public class Main {
                     double peso = teclado.nextDouble();
                     break;
                 case 2:
-                    System.out.println("");
+                    m1.mostrarFicha();
 
                     break;
                 case 3:
                     m1.mostrarFicha();
+                    m1.adelgazar();
+                    m1.engordar();
 
                     break;
                 case 4:
                     System.out.println("modificar el peso ");
-
 
                     break;
                 case 5:
