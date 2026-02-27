@@ -70,35 +70,25 @@ public class Mascota {
 
     // Metodos
 
-    public int cumplirAños (int edad){
-        System.out.println(" Ingresa la edad que va a cumplir tu mascota  ");
+    public int cumplirAnios (int nuevaEdad){
+        this.edad+=nuevaEdad;
         return edad;
     }
 
-    public int  engordar(){
-
-        int  engordar = 17;
-
-        if (peso < 15 ){
-            System.out.println("La mascota esta muy baja de peso");
-            System.out.println("Debes seguir las indicaciones para que suba de peso por su salud");
-        }
-        return engordar;
-
+    public double engordar(double nuevoPeso){
+        this.peso+=nuevoPeso;
+        return peso;
     }
 
-    public int  adelgazar(){
-         int adelgazar = 56;
-         if (peso > adelgazar){
-             System.out.println("Tu mascota tiene sobre peso");
-         }
-         return adelgazar;
-
+    public double adelgazar(double nuevoPeso){
+        this.peso-=nuevoPeso;
+        return peso;
     }
 
-    public void  recuperarSalud(){
 
 
+    public boolean  recuperarSalud(){
+         return true ;
     }
 
     public String mostrarFicha(){
@@ -108,4 +98,6 @@ public class Mascota {
         System.out.println("Peso: "+this.getPeso());
         return "";
     }
+
+
 }
