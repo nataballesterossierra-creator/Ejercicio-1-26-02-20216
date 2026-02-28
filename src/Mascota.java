@@ -8,6 +8,14 @@ public class Mascota {
 
     public Mascota() {
     }
+    public Mascota(String nombre, String especie, int edad, double peso) {
+        this.nombre = nombre;
+        this.especie = especie;
+        this.edad = edad;
+        this.peso = peso;
+
+    }
+
 
     public Mascota(String nombre, String especie, int edad, double peso, boolean saludable) {
         this.nombre = nombre;
@@ -59,13 +67,8 @@ public class Mascota {
 
     @Override
     public String toString() {
-        return "Mascota{" +
-                "nombre='" + nombre + '\'' +
-                ", especie='" + especie + '\'' +
-                ", edad=" + edad +
-                ", peso=" + peso +
-                ", saludable=" + saludable +
-                '}';
+        return "Mascota : " + "Nombre:" + nombre + " ||"+" Especie: " + especie + '\'' +  " ||"+" Edad:" + edad + " ||"+
+                "Peso:" + peso + " ||"+"Esta Saludable: " + saludable + " ||";
     }
 
     // Metodos
@@ -75,27 +78,35 @@ public class Mascota {
         return edad;
     }
 
-    public double engordar(double nuevoPeso){
-        this.peso+=nuevoPeso;
+    public double engordar(double nuevoPesoe){
+        this.peso+=nuevoPesoe;
         return peso;
     }
 
-    public double adelgazar(double nuevoPeso){
-        this.peso-=nuevoPeso;
+    public double adelgazar(double nuevoPesoa){
+        this.peso-=nuevoPesoa;
         return peso;
     }
 
 
+    public String evaluarSalud(int indice) {
 
-    public boolean  recuperarSalud(){
-         return true ;
+        if (indice <= 40) {
+            this.saludable = false;
+            return "Crítico";
+        } else {
+            this.saludable = true;
+            return "Bueno";
+        }
     }
+
 
     public String mostrarFicha(){
         System.out.println("Nombre: "+ this.getNombre());
         System.out.println("Especie: "+ this.getEspecie());
-        System.out.println("Edad: "+ this.getEdad());
-        System.out.println("Peso: "+this.getPeso());
+        System.out.println("Edad: "+ this.getEdad()+" AÑOS");
+        System.out.println("Peso: "+this.getPeso()+ " Kg");
+        System.out.println("Saludable: "+ this.isSaludable());
         return "";
     }
 

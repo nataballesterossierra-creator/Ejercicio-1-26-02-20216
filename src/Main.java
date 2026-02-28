@@ -10,39 +10,47 @@ public class Main {
         List<Mascota>lstLista = new ArrayList<>();
 
         int opc ;
-
+        System.out.println("-----------//---------///--------");
         System.out.println("   Sistema de la Veterinaria   ");
         System.out.println("");
 
         do {
+            System.out.println("Elige una opción: ");
+            System.out.println("");
             System.out.println("1. Registrar a tu mascota ");
             System.out.println("2. Mostrar la lista de las mascotas registradas");
-            System.out.println("3. Buscar la mascota Registrada ");
-            System.out.println("4. Salir");
+            System.out.println("3. Buscar  y Modificar Informacion de la mascota Registrada ");
+            System.out.println("4. Mostrar informacion Actualizada");
+            System.out.println("5. Salir");
             opc = teclado.nextInt();
             teclado.nextLine();
 
             switch (opc){
 
                 case 1:/*crear la mascota*/
-                    System.out.println(" Ingresa el nombre de tu mascota: ");
+                    System.out.println(" Ingresa el Nombre de tu mascota: ");
                     String nombre = teclado.next();
                     System.out.println("Ingrese el tipo de Especie de su mascota: ");
                     String especie = teclado.next();
-                    System.out.println("Ingrese la edad: ");
+                    System.out.println("Ingrese la edad (Años): ");
                     int edad = teclado.nextInt();
-                    System.out.println(" Ingrese el peso de su mascota: ");
+                    System.out.println(" Ingrese el peso de su mascota (Kg): ");
                     double peso = teclado.nextDouble();
-                    Mascota M1 = new Mascota(nombre, especie,edad,peso, m1.isSaludable());
+                    Mascota M1 = new Mascota(nombre, especie, edad, peso);
+                    System.out.println(" Ingrese el indice de salud de su mascota (0-100): ");
+                    int salud = teclado.nextInt();
+                    String estado = M1.evaluarSalud(salud);
                     lstLista.add(M1);
                     System.out.println(" Mascota Registrada.....");
 
                     break;
                 case 2: /* Lista*/
-                    System.out.println(" Lista de las mascotas registradas ");
+                    System.out.println(" LISTA DE LAS MASCOTAS REGISTRADAS ");
+                    System.out.println(" //___//___//___//___//___//___//___//___//___//___//");
                     for (Mascota m : lstLista){
                         System.out.println(m);
                     }
+                    System.out.println(" //___//___//___//___//___//___//___//___//___//___//");
                     System.out.println("");
                     break;
 
@@ -59,7 +67,7 @@ public class Main {
                     for (Mascota m : lstLista){
                         if(m.getNombre().equalsIgnoreCase(Nombre1)){
                             pet1 = m;
-                            System.out.println(pet1.toString());
+                            System.out.println(pet1.mostrarFicha());
                         }
                     }
 
@@ -76,28 +84,43 @@ public class Main {
                                System.out.println("Nueva Edad: ");
                                int nuevaEdad = teclado.nextInt();
                                pet1.cumplirAnios(nuevaEdad);
+                               System.out.println("Edad Actualizada.....");
+
                                break;
 
                            case 2:/*modificar peso*/
-                               int mp;
-                               System.out.println(" desea que la mascota 1.Engorde 2. Adelgaze:");
-                               mp= teclado.nextInt();
-                               switch (mp){
+                               int opcPeso;
+                               System.out.println(" Desea que la mascota 1.Adelgaze 2. Engorde:");
+                               opcPeso= teclado.nextInt();
+                               switch (opcPeso){
                                    case 1://adelgazar
+                                       System.out.println("Nuevo Peso: ");
+                                       double nuevoPesoa = teclado.nextDouble();
+                                       pet1.adelgazar(nuevoPesoa);
+                                       System.out.println("Peso Actualizado");
 
-                                       break;
+                                   break;
                                    case 2://engordar
-                                       break;
+                                       System.out.println("Nueva Peso: ");
+                                       double nuevoPesoe = teclado.nextDouble();
+                                       pet1.engordar(nuevoPesoe);
+                                       System.out.println("Peso Actualizado");
+                                   break;
+
                                    default:
                                        System.out.println("Error");
                                }
 
                                break;
                            case 3:/*modificar estado de salud*/
-
+                               System.out.println("Nuevo Estado de Salud: ");
+                               int nuevaSalud = teclado.nextInt();
+                               String estadoActual = pet1.evaluarSalud(nuevaSalud);
+                               System.out.println("Estado de salud: " + estadoActual + " (saludable=" + pet1.isSaludable() + ")");
                                break;
                            case 4:
-                               System.out.println(" Saliendo del sistema.....");
+                               System.out.println(" Saliendo del sistema de modificación.....");
+                               System.out.println("..........///.......///.......////....//");
                                break;
                            default:
                                System.out.println(" Error ");
@@ -107,8 +130,23 @@ public class Main {
 
                    }while (opc1 != 4);
                     break;
-
                 case 4:
+                    System.out.println(" LISTA ACTUALIZADA");
+                    System.out.println("//____//____//____//____//____//____//____//");
+
+                    if (lstLista.isEmpty()) {
+                        System.out.println("(Sin registros)");
+                    } else {
+                        for (Mascota m : lstLista) {
+                            System.out.println(m);
+                        }
+                    }
+
+                    System.out.println("//____//____//____//____//____//____//____//");
+
+                    break;
+
+                case 5:
                     System.out.println(" Saliendo del sistema.....");
                     break;
 
@@ -117,7 +155,7 @@ public class Main {
 
             }
 
-        }while (opc !=4);
+        }while (opc !=5);
 
 
 
